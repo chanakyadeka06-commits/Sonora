@@ -9,7 +9,7 @@ import {
 import { io } from 'socket.io-client';
 import { compensatePlaybackPosition, DEFAULT_SETTINGS, FREQUENCIES, useAudioProcessing } from './audio.js';
 
-const API = '/api';
+const API = 'https://sonora-8hkp.onrender.com/api';
 const tabs = [
   { id: 'eq', label: 'Equalizer', icon: SlidersHorizontal },
   { id: 'bass', label: 'Bass boost', icon: Activity },
@@ -282,7 +282,10 @@ function RoomView({ room, setRoom, role, ownerToken, userId, name, onLeave, sock
   }, [currentSong?.videoId, currentSong?.url]);
 
   useEffect(() => {
-    const socket = io({ autoConnect: true, reconnection: true });
+    const socket = io('https://sonora-8hkp.onrender.com', {
+    autoConnect: true,
+    reconnection: true
+    });
     socketRef.current = socket;
     socketRefLocal.current = socket;
     const measureClockOffset = () => {
